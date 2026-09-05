@@ -1,4 +1,3 @@
-# genai-anxiety-selfefficacy-wellbeing
 
 # Generative AI Use, Academic Anxiety and Student Well-Being
 
