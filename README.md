@@ -2,15 +2,6 @@
 
 # Generative AI Use, Academic Anxiety and Student Well-Being
 
-Data and analysis code accompanying the manuscript submitted for double-blind
-review to *Calitatea Vieții*, thematic issue "The Age of Artificial
-Intelligence: Higher Education, Research, and Social Transformation."
-
-Author identities are withheld from this repository while the manuscript is
-under review. This README and the file contents avoid any information that
-would identify the authors or their institutions beyond what appears in the
-manuscript itself.
-
 ## Contents
 
 - `dataset.csv` — anonymised survey data, N = 627, 47 columns. One row per
@@ -38,10 +29,9 @@ console.
 
 ## Data collection
 
-Anonymous online survey administered February-April 2025 at one university
-and three polytechnic institutions in Portugal. Participation was voluntary
-and self-selected; see the manuscript's Methods and Limitations sections
-for details on recruitment and the resulting constraints on inference.
+Anonymous online survey administered February-April 2025 at four universities in Portugal. 
+Participation was voluntary and self-selected; see the manuscript's Methods and Limitations
+sections for details on recruitment and the resulting constraints on inference.
 
 ## Measures
 
@@ -49,10 +39,6 @@ Full item wordings and scoring for all instruments (AI-related academic
 anxiety, academic self-efficacy, UWES-S-9 engagement, WHO-5 well-being) are
 in the codebook. Composite scores in `dataset.csv` are pre-computed
 following the formulas listed there.
-
-## License
-
-[Add license - CC-BY 4.0 is standard for accompanying research data]
 
 ## Citation
 
