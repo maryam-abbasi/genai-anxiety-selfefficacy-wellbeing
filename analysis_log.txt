@@ -1,0 +1,159 @@
+Analysis log — dataset: dataset.csv
+Generated with 03_analysis.py
+
+==============================================================================
+Table 1 — Sample characteristics (N = 627)
+==============================================================================
+
+Age:    M = 22.40  SD = 4.09
+Income: M = 3.04  SD = 0.93
+GenAI use intensity: M = 3.89  SD = 1.09
+
+Sex:
+  F                                  :  366  ( 58.4%)
+  M                                  :  255  ( 40.7%)
+  O                                  :    6  (  1.0%)
+
+Study cycle:
+  BSc                                :  445  ( 71.0%)
+  MSc                                :  171  ( 27.3%)
+  Other                              :   11  (  1.8%)
+
+Field of study:
+  STEM                               :  329  ( 52.5%)
+  Health                             :  113  ( 18.0%)
+  SocSci                             :  142  ( 22.6%)
+  Arts                               :   43  (  6.9%)
+
+Institution:
+  UC                                 :  215  ( 34.3%)
+  IPC                                :  142  ( 22.6%)
+  IPV                                :  118  ( 18.8%)
+  IPP                                :  152  ( 24.2%)
+
+==============================================================================
+Section 4.1 — Patterns of GenAI use
+==============================================================================
+
+GenAI use intensity distribution:
+  Never   :  28  (  4.5%)
+  Rarely  :  59  (  9.4%)
+  Monthly :  62  (  9.9%)
+  Weekly  : 281  ( 44.8%)
+  Daily   : 197  ( 31.4%)
+
+Weekly or more frequent: 76.2%
+Daily:                   31.4%
+
+Purpose marginals (% reporting weekly+ use):
+  Writing & editing assistance       :  62.4%
+  Summarising readings               :  54.7%
+  Brainstorming / idea generation    :  49.0%
+  Translation                        :  41.1%
+  Programming / debugging code       :  37.6%
+  Explaining difficult concepts      :  36.4%
+  Generating study questions         :  28.7%
+  Solving homework directly          :  23.1%
+
+==============================================================================
+Table 2 — Descriptives, internal consistency, correlations
+==============================================================================
+
+Variable                                   M      SD   alpha
+  GenAI use intensity                   3.89    1.09      — 
+  AI-related anxiety                    4.12    1.31    0.85
+  Academic self-efficacy                4.96    1.07    0.88
+  Academic engagement                   4.43    1.18    0.91
+  Subjective well-being (WHO-5)        57.15   19.42    0.83
+
+Pearson correlations (lower triangle, with p-values):
+    1. GenAI  2. Anxiety  3. SelfEff  4. Engage   5. WHO-5
+  1. GenAI        1.00                                            
+  2. Anxiety  +0.320***       1.00                                 
+  3. SelfEff  -0.178***  -0.410***       1.00                      
+  4. Engage  -0.092*    -0.338***  +0.578***       1.00           
+  5. WHO-5   -0.217***  -0.413***  +0.453***  +0.382***       1.00
+
+WHO-5 ≤ 50: 36.7% of sample
+
+==============================================================================
+Section 4.2 / Figure 3 — WHO-5 by GenAI use intensity
+==============================================================================
+
+Group          n    Mean      SD             95% CI
+  Never       28    65.0    19.9  [ 57.6,  72.4]
+  Rarely      59    63.0    18.9  [ 58.2,  67.8]
+  Monthly     62    62.1    18.1  [ 57.6,  66.6]
+  Weekly     281    58.4    18.1  [ 56.3,  60.5]
+  Daily      197    51.0    20.1  [ 48.2,  53.8]
+
+One-way ANOVA: F(4, 622) = 9.19, p = <.001, η² = 0.056
+
+Tukey HSD post-hoc (only contrasts involving 'Daily' shown):
+   ['Daily', 'Monthly', np.float64(11.0899), np.float64(0.0006), np.float64(3.5496), np.float64(18.6302), np.True_]
+   ['Daily', 'Never', np.float64(14.0254), np.float64(0.0024), np.float64(3.5674), np.float64(24.4834), np.True_]
+   ['Daily', 'Rarely', np.float64(12.0084), np.float64(0.0002), np.float64(4.3237), np.float64(19.6932), np.True_]
+   ['Daily', 'Weekly', np.float64(7.4026), np.float64(0.0003), np.float64(2.5909), np.float64(12.2143), np.True_]
+
+==============================================================================
+Table 3 — Hierarchical OLS regression on WHO-5 (standardised βs)
+==============================================================================
+
+Predictor                  Step1 β     Step2 β     Step3 β            Step3 95% CI   p (Step3)
+  age                       -0.022      -0.020      -0.006        [-0.072, +0.061]       0.867
+  female                    -0.001      -0.012      +0.011        [-0.055, +0.078]       0.735
+  year                      +0.007      +0.010      +0.021        [-0.045, +0.087]       0.529
+  income                 +0.164***   +0.174***   +0.172***        [+0.106, +0.238]       <.001
+  genai                          —   -0.226***     -0.084*        [-0.153, -0.014]       0.019
+  anxiety                        —           —   -0.258***        [-0.333, -0.182]       <.001
+  selfeff                        —           —   +0.330***        [+0.258, +0.403]       <.001
+
+  Step 1: R² = 0.027
+  Step 2: R² = 0.078
+  Step 3: R² = 0.302
+  ΔR² (Step1 → Step2): 0.051
+  ΔR² (Step2 → Step3): 0.224
+  Step 1 → Step 2: F = 34.16, p = <.001, df = 1
+  Step 2 → Step 3: F = 99.56, p = <.001, df = 2
+
+==============================================================================
+Table 4 / Figure 4 — Parallel mediation (PROCESS model 4 analogue)
+==============================================================================
+
+  a1 (genai → anxiety):   +0.320  p = <.001
+  a2 (genai → self-eff): -0.178  p = <.001
+  b1 (anxiety → WHO-5 | .): -0.250  p = <.001
+  b2 (self-eff → WHO-5 | .): +0.337  p = <.001
+  c′ (direct genai → WHO-5):  -0.077  p = 0.033
+  c  (total genai → WHO-5):   -0.217  p = <.001
+
+  Indirect via anxiety  (a1×b1): -0.080
+  Indirect via self-eff (a2×b2): -0.060
+  Total indirect:                -0.140
+
+Bootstrap 95% CIs (5000 resamples):
+  Indirect via anxiety:   -0.080  Boot SE = 0.015  95% Boot CI [-0.111, -0.052]
+  Indirect via self-eff:  -0.060  Boot SE = 0.015  95% Boot CI [-0.092, -0.031]
+  Total indirect:         -0.140  Boot SE = 0.023  95% Boot CI [-0.186, -0.096]
+
+  Proportion of total effect mediated: 64.4%
+
+==============================================================================
+Robustness checks (Section 4.4)
+==============================================================================
+
+Mediation with engagement (UWES-S-9) added as outcome covariate:
+  Anxiety path:  β = -0.073  95% Boot CI [-0.105, -0.046]
+  Self-eff path: β = -0.046  95% Boot CI [-0.073, -0.023]
+
+Moderation by sex (1 = Female):
+  a1: interaction p = 0.575
+  a2: interaction p = 0.389
+
+Moderation by cycle (1 = MSc):
+  a1: interaction p = 0.751
+  a2: interaction p = 0.077
+
+==============================================================================
+Analysis complete.
+==============================================================================
